@@ -270,8 +270,8 @@ function updateParticles() {
 }
 
 // ==================== Player and Physics ==================== //
-const gravity = 0.07;
-const thrustPower = 0.1;
+const gravity = 0.05;
+const thrustPower = 0.19;
 const rotationSpeed = 0.05;
 const fuelConsumption = 0.5;
 
