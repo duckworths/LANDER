@@ -217,15 +217,15 @@ const camera = {
 
 function createExplosion(x, y, color = 'orange') {
     particles = [];
-    for (let i = 0; i < 50; i++) { // 50 particles per explosion
+    for (let i = 0; i < 75; i++) { // 50 particles per explosion
         particles.push(new Particle(x, y, color));
     }
     explosionActive = true;
 
     // Trigger Camera Shake and Zoom
-    camera.shakeIntensity = 25; // Adjust intensity as needed
+    camera.shakeIntensity = 55; // Adjust intensity as needed
     camera.isZooming = true;
-    camera.targetZoom = 1.9;    // Adjust zoom level as needed
+    camera.targetZoom = 5;    // Adjust zoom level as needed
 }
 
 function createSuccessConfetti(x, y) {
@@ -234,7 +234,7 @@ function createSuccessConfetti(x, y) {
     // Optional: Additional camera effects for success
     camera.shakeIntensity = 10;
     camera.isZooming = true;
-    camera.targetZoom = 1.9;
+    camera.targetZoom = 2;
 }
 
 // Draw and update particles
@@ -270,8 +270,8 @@ function updateParticles() {
 }
 
 // ==================== Player and Physics ==================== //
-const gravity = 0.1;
-const thrustPower = 0.2;
+const gravity = 0.12;
+const thrustPower = 0.15;
 const rotationSpeed = 0.05;
 const fuelConsumption = 0.5;
 
@@ -319,7 +319,7 @@ class Rock {
 
 function placeRocks() {
     rocks = [];
-    const numberOfRocks = Math.floor(Math.random() * 20) + 10; // Between 10 and 30 rocks
+    const numberOfRocks = Math.floor(Math.random() * 20) + 20; // Between 20 and 40 rocks
     for (let i = 0; i < numberOfRocks; i++) {
         const rockX = Math.random() * canvas.width;
         const rockY = canvas.height - 30 - Math.random() * 20; // Slightly above ground
@@ -431,9 +431,9 @@ function updatePlayer() {
     if (player.y >= canvas.height - 30 - player.height / 2) {
         createExplosion(player.x, canvas.height - 30 - player.height / 2, 'red');
         // Additional Camera Effects for Ground Crash
-        camera.shakeIntensity = 20; // Higher intensity for ground crash
+        camera.shakeIntensity = 50; // Higher intensity for ground crash
         camera.isZooming = true;
-        camera.targetZoom = 1.5;    // More zoom for ground crash
+        camera.targetZoom = 5;    // More zoom for ground crash
 
         // End the game after the explosion
         setTimeout(() => {
@@ -475,7 +475,7 @@ function updatePlayer() {
             // Camera Effects for Pad Crash
             camera.shakeIntensity = 15; // Adjust as needed
             camera.isZooming = true;
-            camera.targetZoom = 1.3;    // Adjust zoom level as needed
+            camera.targetZoom = 2.5;    // Adjust zoom level as needed
 
             // End the game after the explosion
             setTimeout(() => {
@@ -489,9 +489,9 @@ function updatePlayer() {
     if (player.fuel <= 0 && !player.landed) {
         // Player runs out of fuel and hasn't landed
         createExplosion(player.x, player.y, 'red');
-        camera.shakeIntensity = 20;
+        camera.shakeIntensity = 50;
         camera.isZooming = true;
-        camera.targetZoom = 1.5;
+        camera.targetZoom = 5;
 
         setTimeout(() => {
             endGame(false);
