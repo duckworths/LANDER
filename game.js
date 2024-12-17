@@ -223,9 +223,9 @@ function createExplosion(x, y, color = 'orange') {
     explosionActive = true;
 
     // Trigger Camera Shake and Zoom
-    camera.shakeIntensity = 15; // Adjust intensity as needed
+    camera.shakeIntensity = 25; // Adjust intensity as needed
     camera.isZooming = true;
-    camera.targetZoom = 1.3;    // Adjust zoom level as needed
+    camera.targetZoom = 1.9;    // Adjust zoom level as needed
 }
 
 function createSuccessConfetti(x, y) {
@@ -234,7 +234,7 @@ function createSuccessConfetti(x, y) {
     // Optional: Additional camera effects for success
     camera.shakeIntensity = 10;
     camera.isZooming = true;
-    camera.targetZoom = 1.2;
+    camera.targetZoom = 1.9;
 }
 
 // Draw and update particles
