@@ -375,30 +375,44 @@ function drawGround() {
     ctx.fillRect(0, canvas.height - 30, canvas.width, 30);
 }
 
-// ==================== Player Rendering ==================== //
-function drawPlayer() {
-    ctx.save();
-    ctx.translate(player.x, player.y);
-    ctx.rotate(player.angle);
-    ctx.fillStyle = 'white';
-    ctx.beginPath();
-    ctx.moveTo(0, -player.height / 2);
-    ctx.lineTo(player.width / 2, player.height / 2);
-    ctx.lineTo(-player.width / 2, player.height / 2);
-    ctx.closePath();
-    ctx.fill();
+ // ==================== Player Rendering ==================== //
+        // Preload your character image
+        const playerImage = new Image();
+        playerImage.src = 'https://mitchellsnursery.com/wp-content/uploads/2024/12/lander.png'; // Replace with the path to your image
 
-    if (player.keys.thrust && player.fuel > 0 && !player.landed) {
-        ctx.fillStyle = 'orange';
-        ctx.beginPath();
-        ctx.moveTo(-player.width / 4, player.height / 2);
-        ctx.lineTo(player.width / 4, player.height / 2);
-        ctx.lineTo(0, player.height);
-        ctx.closePath();
-        ctx.fill();
-    }
-    ctx.restore();
-}
+        // Ensure the image is loaded before starting the game
+        playerImage.onload = () => {
+            // Optionally, you can start the game here or keep the title screen
+            // For this example, we'll keep the title screen until the player presses Enter
+        };
+
+        function drawPlayer() {
+            ctx.save();
+            ctx.translate(player.x, player.y); // Move the canvas to player's position
+            ctx.rotate(player.angle);          // Rotate the canvas to match the player's angle
+
+            // Draw the player image centered at the player's position
+            ctx.drawImage(
+                playerImage, 
+                -player.width / 2, // Adjust to center the image horizontally
+                -player.height / 2, // Adjust to center the image vertically
+                player.width,       // Set image width to match player dimensions
+                player.height       // Set image height to match player dimensions
+            );
+
+            // Optional: Draw the thrust flame
+            if (player.keys.thrust && player.fuel > 0 && !player.landed) {
+                ctx.fillStyle = 'orange';
+                ctx.beginPath();
+                ctx.moveTo(-player.width / 4, player.height / 2);
+                ctx.lineTo(player.width / 4, player.height / 2);
+                ctx.lineTo(0, player.height);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            ctx.restore();
+        }
 
 // ==================== Player Update ==================== //
 function updatePlayer() {
