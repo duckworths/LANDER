@@ -613,7 +613,7 @@ function endGame(success = false) {
         finalScoreDisplay.textContent = `Fuel Remaining: ${Math.max(player.fuel, 0).toFixed(0)}`;
         
         // Add fuel for the next landing
-        player.fuel += 100; // *** Adjust the amount as needed
+        player.fuel += 200; // *** Adjust the amount as needed
     } else {
         gameOverMessage.textContent = 'GAME OVER!'; // *** Set failure message
         finalScoreDisplay.textContent = `Score: ${Math.max(player.fuel, 0).toFixed(0)}`;
